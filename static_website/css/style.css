@@ -47,7 +47,7 @@ p {
     margin: 0;
 }
 
-header .container-md {
+.theurer_card .container-md {
     max-width: 60rem;
     background-color: var(--primary);
 }
