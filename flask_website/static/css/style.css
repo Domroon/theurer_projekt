@@ -1,0 +1,117 @@
+/*   
+Theme Name: Piano Theme
+Theme URI: Dominik Häußer
+Description: A Theme for WordPress with Bootstrap for styling.
+Author: Dominik Häußer
+Author URI: Dominik Häußer
+Version: 1.0
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;1,300&display=swap');
+
+/* Background Colors */
+:root {
+    --primary: rgb(223, 221, 221);
+}
+
+/* Global */
+h1 {
+    font-family: 'Merriweather Sans', sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+p {
+    font-size: 1.2rem;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.fas {
+    font-size: 5rem;
+}
+
+/* Navbar */
+
+.navbar img {
+    width: 100px;
+}
+
+.piano img{
+    width: 450px;
+}
+
+.piano .container-fluid {
+    margin: 0;
+}
+
+.theurer_card .container-md {
+    max-width: 60rem;
+    background-color: var(--primary);
+}
+
+/* TRIAL LESSON */
+
+.trial_lesson {
+    color: white;
+}
+
+/* INSTRUMENTS */
+
+.instruments img {
+    width: 200px;
+}
+
+.instruments .container {
+    max-width: 60rem;
+}
+
+.instruments .col {
+    background-color: var(--primary);
+}
+
+/* PLACE */
+.place {
+    color: white;
+}
+
+/* FOOTER */
+footer {
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+footer img {
+    width: 60px;
+}
+
+footer a:hover {
+    color: rgb(222, 106, 80);
+}
+
+/* PIANO LESSON */
+
+.piano_lesson img {
+    width: 200px;
+}
+
+/* DRUM LESSON */
+
+.drum_lesson img {
+    width: 200px;
+}
+
+/* CONTACT */
+.contact a {
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #212529;
+}
+
+.contact .fas {
+    font-size: 10rem;
+}
