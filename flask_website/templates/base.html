@@ -1,6 +1,3 @@
-{% for message in get_flashed_messages() %}
-  <div class="flash">{{ message }}</div>
-{% endfor %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,15 +58,20 @@
           <div class="mb-3">
             <h1 class="mb-5">Noch Fragen?</h1>
             <label for="exampleFormControlInput1" class="form-label">Email Adresse</label>
-            <input name ="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <input name ="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Deine Frage</label>
-            <textarea name="question" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea name="question" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
           </div>
           <div class="d-grid gap-2 mt-5">
             <button class="btn btn-outline-dark" type="submit">Absenden</button>
-          </div>   
+          </div>
+          {% for message in get_flashed_messages() %}
+            <div class="flash d-grid gap-2 mt-5 alert alert-success">
+              {{ message }}
+            </div>
+          {% endfor %}   
         </form>
       </div>
     </div>

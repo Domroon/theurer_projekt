@@ -29,8 +29,14 @@ def post_request():
     if request.method == 'POST':
         email = request.form['email']
         question = request.form['question']
-        flash(email)
-        flash(question)
+        if not email:
+            flash("Email required")
+        elif not question:
+            flash("Question required")
+        else:
+            flash("Sucessfully send your question")
+            #flash(email)
+            #flash(question)
 
 
 @app.route("/", methods=('GET', 'POST'))
