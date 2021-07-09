@@ -34,7 +34,7 @@ def post_request():
         elif not question:
             flash("Question required")
         else:
-            flash("Sucessfully send your question")
+            flash("Frage erfolgreich verschickt")
             #flash(email)
             #flash(question)
 
