@@ -3,7 +3,6 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 
-
 def get_db():
     if 'db' not in g:
         db_link = current_app.config['DATABASE']
@@ -29,6 +28,8 @@ def init_db():
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
+    from . import models
+    click.echo('Set SQLAlchemy Models.')
     init_db()
     click.echo('Initialized the database.')
 
