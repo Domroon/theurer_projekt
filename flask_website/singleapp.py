@@ -1,9 +1,24 @@
 from flask import Flask
 from flask import request, flash
 from flask.templating import render_template
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
 app = Flask(__name__)
-app.config.from_mapping(
-        SECRET_KEY='dev')
+app.config['SECRET_KEY'] = 'ugasgfiiggfgiiasf657sff'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
+
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    question = db.Column(db.Text, nullable=False)
+    date_ask = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"Question('{self.email}', '{self.date_ask}')"
+
 
 buttons = [
     {
