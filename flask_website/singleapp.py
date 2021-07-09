@@ -30,11 +30,11 @@ def post_request():
         email = request.form['email']
         question = request.form['question']
         if not email:
-            flash("Email required")
+            flash("Bitte gib eine Email-Adresse ein", 'danger')
         elif not question:
-            flash("Question required")
+            flash("Bitte gib eine Frage ein", 'danger')
         else:
-            flash("Frage erfolgreich verschickt")
+            flash("Frage erfolgreich verschickt", 'success')
             #flash(email)
             #flash(question)
 

@@ -67,11 +67,15 @@
           <div class="d-grid gap-2 mt-5">
             <button class="btn btn-outline-dark" type="submit">Absenden</button>
           </div>
-          {% for message in get_flashed_messages() %}
-            <div class="flash d-grid gap-2 mt-5 alert alert-success">
-              {{ message }}
-            </div>
-          {% endfor %}   
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="flash d-grid gap-2 mt-5 alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
         </form>
       </div>
     </div>
