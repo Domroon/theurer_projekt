@@ -1,6 +1,6 @@
-from . import db as db_init
+from flask import current_app
 
-db = db_init.get_db()
+db = current_app.get_db()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
