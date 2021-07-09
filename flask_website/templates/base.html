@@ -41,7 +41,7 @@
   </nav>
   
   <!-- PIANO STRIPE -->
-  <section class="piano">
+  <section class="piano" id="anchor">
     <div class="container-fluid p-0">
       <img class ="w-100" src="static/img/piano_stripe_small.jpg" alt="">
     </div>
@@ -51,10 +51,10 @@
 {% block content %} {% endblock content %}
 
   <!-- Questions -->
-  <section class="questions">
+  <section class="questions" id="questions">
     <div class="container mb-5">
       <div class="row justify-content-center">
-        <form method="post" class="col-md-7 text-center">
+        <form method="post" class="col-md-7 text-center" action="#questions">
           <div class="mb-3">
             <h1 class="mb-5">Noch Fragen?</h1>
             <label for="exampleFormControlInput1" class="form-label">Email Adresse</label>
@@ -90,7 +90,7 @@
           <a href="Schlagzeugunterricht.html">Schlagzeugunterricht</a>
         </div>
         <div class="col-sm-2 text-center">
-          <a href="#">Kontakt</a>
+          <a href="#anchor">Kontakt</a>
         </div>
         <div class="col text-center">
           <a href="Impressum.html">Impressum</a>
