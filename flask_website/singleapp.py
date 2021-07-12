@@ -3,6 +3,7 @@ from flask import request, flash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import sys
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ugasgfiiggfgiiasf657sff'
@@ -12,7 +13,7 @@ db = SQLAlchemy(app)
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=False, nullable=False)
     question = db.Column(db.Text, nullable=False)
     date_ask = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
@@ -49,8 +50,11 @@ def post_request():
         elif not question:
             flash("Bitte gib eine Frage ein", 'danger')
         else:
+            question = Question(email=email, question=question)
+            db.session.add(question)
+            db.session.commit()
             flash("Frage erfolgreich verschickt", 'success')
-            #flash(email)
+            flash(Question.query.all())
             #flash(question)
 
 
@@ -85,6 +89,14 @@ def admin():
 
 
 def main():
+    try:
+        if sys.argv[1] == 'init-db':
+            db.drop_all()
+            db.create_all()
+            print(" * Database initialized")
+    except IndexError:
+        pass
+
     app.run(debug=True)
 
 
