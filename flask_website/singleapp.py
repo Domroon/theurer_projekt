@@ -79,6 +79,11 @@ def contact():
     return render_template("contact.html", title="Kontakt", buttons=buttons)
 
 
+@app.route("/admin", methods=('GET', 'POST'))
+def admin():
+    return render_template("admin.html", title="Admin", buttons=buttons)
+
+
 def main():
     app.run(debug=True)
 
