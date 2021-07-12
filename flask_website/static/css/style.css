@@ -115,3 +115,14 @@ footer a:hover {
 .contact .fas {
     font-size: 10rem;
 }
+
+/* LOGIN */
+.input_label {
+    color: black;
+}
+
+.login{
+    color:black;
+    background-color: var(--primary);
+}
+}
