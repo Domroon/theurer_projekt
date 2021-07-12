@@ -124,5 +124,26 @@ footer a:hover {
 .login{
     color:black;
     background-color: var(--primary);
+
+
+
 }
+
+/* ADMIN-BUTTONS */
+.butt{
+    background-color: var(--primary);
+    color: black;
+    min-width: 20rem;
+    min-height: 20rem;
+    
+}
+
+.butt-inner{
+    min-height: 15rem;
+    
+}
+
+.admin-buttons .container {
+    max-width: 60rem;
+    min-height: 60rem;
 }
