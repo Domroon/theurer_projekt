@@ -28,6 +28,9 @@ class User(db.Model):
     password = db.Column(db.String(120), nullable=False)
     registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
+    def __repr__(self):
+        return f"User('{self.name}','{self.email}', '{self.registered}')"
+
 
 buttons = [
     {
