@@ -54,7 +54,7 @@ def post_request():
             db.session.add(question)
             db.session.commit()
             flash("Frage erfolgreich verschickt", 'success')
-            flash(Question.query.all())
+            #flash(Question.query.all())
             #flash(question)
 
 
@@ -84,8 +84,19 @@ def contact():
 
 
 @app.route("/login", methods=('GET', 'POST'))
+def login():
+    return render_template("login.html", title="Login", buttons=buttons)
+
+
+@app.route("/admin", methods=('GET', 'POST'))
 def admin():
-    return render_template("login.html", title="Admin", buttons=buttons)
+    return render_template("admin.html", title="Admin", buttons=buttons)
+
+
+#@app.route("/admin/questions", methods=('GET', 'POST'))
+#def admin():
+    #return render_template("questions.html", title="Admin", buttons=buttons)
+
 
 
 def main():
