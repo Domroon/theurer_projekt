@@ -21,6 +21,14 @@ class Question(db.Model):
         return f"Question('{self.email}', '{self.date_ask}')"
 
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
 buttons = [
     {
         'title': 'Home',
@@ -85,6 +93,19 @@ def contact():
 
 @app.route("/login", methods=('GET', 'POST'))
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # check if User exists
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if user.password == password:
+                flash("Erfolgreich eingeloggt", 'success')
+            else:
+                flash("Das Passwort ist falsch", 'danger')
+        else:
+            flash("Dieser Nutzer existiert nicht", 'danger')
     return render_template("login.html", title="Login", buttons=buttons)
 
 
@@ -101,6 +122,7 @@ def admin():
 
 def main():
     try:
+        print(sys.argv[1])
         if sys.argv[1] == 'init-db':
             db.drop_all()
             db.create_all()
