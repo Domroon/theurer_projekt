@@ -1,7 +1,7 @@
+from werkzeug.utils import redirect
 from flask_website.models import User, Question
-from flask import request, flash, render_template
-from flask_website import app
-from flask_website import db
+from flask import request, flash, render_template, url_for
+from flask_website import app, db, bcrypt
 
 
 buttons = [
@@ -66,6 +66,31 @@ def contact():
     return render_template("contact.html", title="Kontakt", buttons=buttons)
 
 
+@app.route("/register", methods=('GET', 'POST'))
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        name_exists = User.query.filter_by(name=name).first()
+        email_exists = User.query.filter_by(email=email).first()
+
+        if not name_exists and not email_exists:
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            user = User(name=name, email=email, password=hashed_password)
+            db.session.add(user)
+            db.session.commit()
+            flash(f'Erfolgreich als "{name}" registriert', 'success')
+            return render_template(url_for('login'))
+        elif name_exists:
+            flash(f'Der Name "{name}" ist bereits vergeben', 'danger')
+        elif email_exists:
+            flash(f'Die Email "{email}" ist bereits vergeben', 'danger')
+        
+    return render_template("register.html", title="Register", buttons=buttons)
+
+
 @app.route("/login", methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -81,6 +106,7 @@ def login():
                 flash("Das Passwort ist falsch", 'danger')
         else:
             flash("Dieser Nutzer existiert nicht", 'danger')
+
     return render_template("login.html", title="Login", buttons=buttons)
 
 
