@@ -82,7 +82,7 @@ def register():
             db.session.add(user)
             db.session.commit()
             flash(f'Erfolgreich als "{name}" registriert', 'success')
-            return render_template(url_for('login'))
+            return redirect(url_for('login'))
         elif name_exists:
             flash(f'Der Name "{name}" ist bereits vergeben', 'danger')
         elif email_exists:
