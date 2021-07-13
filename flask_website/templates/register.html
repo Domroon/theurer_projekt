@@ -1,0 +1,39 @@
+{% extends "short_base.html" %}
+{% block content %}
+<!-- Login -->
+    <section class="login">
+      <div class="container-fluid mt-5 p-5 mb-5">
+        <div class="row justify-content-center text-center">
+            <form method="post" class="col-md-12 col-xl-10 col-xxl-6 mt-0 m-4 p-4">
+                <h1>Registrieren</h1>
+                <div class="form-floating mb-3">
+                    <input name="name" class="form-control" id="floatingInput" required placeholder="Name">
+                    <label for="floatingInput">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input name="email" type="email" class="form-control input_label" id="floatingInput" placeholder="name@beispiel.de" required>
+                    <label class="input_label" for="floatingInput">Email Adresse</label>
+                </div>
+                <div class="form-floating">
+                    <input name="password" type="password" class="form-control input_label" id="floatingPassword" placeholder="Passwort" required>
+                    <label class="input_label" for="floatingPassword">Passwort</label>
+                </div>
+                <div class="d-grid gap-2 mt-5">
+                    <button class="btn btn-outline-dark" type="submit">Absenden</button>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash d-grid gap-2 mt-5 alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+      </div>
+    </section>
+
+
+
+{% endblock content %}
