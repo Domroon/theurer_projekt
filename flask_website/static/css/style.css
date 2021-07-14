@@ -14,6 +14,13 @@ Version: 1.0
     --primary: rgb(223, 221, 221);
 }
 
+/* Base */
+.logout-bar{
+    color: white;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
 /* Global */
 h1 {
     font-family: 'Merriweather Sans', sans-serif;
@@ -124,9 +131,10 @@ footer a:hover {
 .login{
     color:black;
     background-color: var(--primary);
+}
 
-
-
+.form-check{
+    max-width: 10rem;
 }
 
 /* ADMIN-BUTTONS */

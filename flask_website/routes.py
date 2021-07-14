@@ -2,7 +2,7 @@ from werkzeug.utils import redirect
 from flask_website.models import User, Question
 from flask import request, flash, render_template, url_for
 from flask_website import app, db, bcrypt
-
+from flask_login import login_user, current_user, logout_user
 
 buttons = [
     {
@@ -68,6 +68,9 @@ def contact():
 
 @app.route("/register", methods=('GET', 'POST'))
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -93,6 +96,9 @@ def register():
 
 @app.route("/login", methods=('GET', 'POST'))
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -100,14 +106,22 @@ def login():
         # check if User exists
         user = User.query.filter_by(email=email).first()
         if user:
-            if user.password == password:
+            if bcrypt.check_password_hash(user.password, password):
+                login_user(user, remember=request.form.get('rem_checkbox'))
                 flash("Erfolgreich eingeloggt", 'success')
+                return redirect(url_for('home'))
             else:
                 flash("Das Passwort ist falsch", 'danger')
         else:
             flash("Dieser Nutzer existiert nicht", 'danger')
 
     return render_template("login.html", title="Login", buttons=buttons)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 
 @app.route("/admin", methods=('GET', 'POST'))
