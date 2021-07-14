@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+click = "*"
+colorama = "*"
+greenlet = "*"
+itsdangerous = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Jinja2 = "*"
+MarkupSafe = "*"
+SQLAlchemy = "*"
+bcrypt = "*"
+cffi = "*"
+pycparser = "*"
+six = "*"
+Werkzeug = "*"
+Flask-Bcrypt = "*"
+Flask-Login = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
