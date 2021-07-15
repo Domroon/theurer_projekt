@@ -131,6 +131,12 @@ def admin():
     return render_template("admin.html", title="Admin", buttons=buttons)
 
 
+@app.route("/account", methods=('GET', 'POST'))
+@login_required
+def account():
+    return render_template("account.html", title="Account", buttons=buttons)
+
+
 #@app.route("/admin/questions", methods=('GET', 'POST'))
 #def admin():
     #return render_template("questions.html", title="Admin", buttons=buttons)

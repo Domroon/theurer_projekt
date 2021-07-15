@@ -1,0 +1,67 @@
+{% extends "short_base.html" %}
+{% block content %}
+<!-- ACCOUNT -->
+<section class="account">
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container m-5 p-4 card">
+        <div class="row m-4">
+            <div class="col">
+                <h3>Hallo {{ current_user.name }} !</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-end">
+                <p>Name:</p>
+            </div>
+            <div class="col-6">
+                <p>{{ current_user.name }}</p>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary">Ändern</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 text-end">
+                <p>Email:</p>
+            </div>
+            <div class="col-6">
+                <p>{{ current_user.email }}</p>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary">Ändern</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 text-end">
+                <p>Password:</p>
+            </div>
+            <div class="col-6">
+                <p>Empty Field</p>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary">Ändern</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 text-end">
+                <p>Registriert seit:</p>
+            </div>
+            <div class="col-6">
+                <p>{{ current_user.registered }}</p>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary">Ändern</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
