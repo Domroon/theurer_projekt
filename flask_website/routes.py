@@ -2,7 +2,7 @@ from werkzeug.utils import redirect
 from flask_website.models import User, Question
 from flask import request, flash, render_template, url_for
 from flask_website import app, db, bcrypt
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 buttons = [
     {
@@ -108,8 +108,9 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, password):
                 login_user(user, remember=request.form.get('rem_checkbox'))
+                next_page = request.args.get('next')
                 flash("Erfolgreich eingeloggt", 'success')
-                return redirect(url_for('home'))
+                return redirect(next_page) if next_page else redirect(url_for('home'))
             else:
                 flash("Das Passwort ist falsch", 'danger')
         else:
@@ -125,6 +126,7 @@ def logout():
 
 
 @app.route("/admin", methods=('GET', 'POST'))
+@login_required
 def admin():
     return render_template("admin.html", title="Admin", buttons=buttons)
 

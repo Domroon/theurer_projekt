@@ -19,6 +19,27 @@
 </head>
 <body>
 <header>
+
+  {% if current_user.is_authenticated %}
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-md ms-4">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <p class="logout-bar"> {{ current_user.name }} </p>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={{ url_for('logout') }}>
+                <button type="button" class="btn btn-outline-light">Logout</button>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-md ms-4">
