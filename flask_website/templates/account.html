@@ -2,66 +2,81 @@
 {% block content %}
 <!-- ACCOUNT -->
 <section class="account">
-    <div class="container mb-5">
+    <div class="container mb-2">
         <div class="row">
             <div class="col text-center">
                 <h1>{{ title }}</h1>
             </div>
         </div>
     </div>
-    <div class="container m-5 p-4 card">
-        <div class="row m-4">
-            <div class="col">
-                <h3>Hallo {{ current_user.name }} !</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 text-end">
-                <p>Name:</p>
-            </div>
-            <div class="col-6">
-                <p>{{ current_user.name }}</p>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary">Ändern</button>
-            </div>
-        </div>
 
+    <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash d-grid gap-2 mt-5 alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+    <div class="container mt-2 p-4">
         <div class="row">
-            <div class="col-4 text-end">
-                <p>Email:</p>
+            <div class="col card account-card py-5 form-control">
+                <div class="row m-4">
+                    <div class="col">
+                        <h3>Hallo {{ current_user.name }} !</h3>
+                    </div>
+                </div>
+                <form method="post" class="row">
+                    <div class="col-4 text-end">
+                        <p>Name:</p>
+                    </div>
+                    <div class="col-5">
+                        <input name="name" class="form-control" id="change-name" placeholder="{{ current_user.name }}">
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Ändern</button>
+                    </div>
+                </form>
+        
+                <form method="post" class="row">
+                    <div class="col-4 text-end">
+                        <p>Email:</p>
+                    </div>
+                    <div class="col-5">
+                        <input name="email" type="email" class="form-control" id="change-email" placeholder="{{ current_user.email }}">
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Ändern</button>
+                    </div>
+                </form>
+        
+                <form method="post" class="row">
+                    <div class="col-4 text-end">
+                        <p>Password:</p>
+                    </div>
+                    <div class="col-5">
+                        <input name="password" type="password" class="form-control" id="change-password">
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Ändern</button>
+                    </div>
+                </form>
+        
+                <form method="post" class="row">
+                    <div class="col-4 text-end">
+                        <p>Registriert seit:</p>
+                    </div>
+                    <div class="col-5">
+                        <p>{{ current_user.registered }}</p>
+                    </div>
+                </form>
             </div>
-            <div class="col-6">
-                <p>{{ current_user.email }}</p>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary">Ändern</button>
-            </div>
+            
         </div>
-
-        <div class="row">
-            <div class="col-4 text-end">
-                <p>Password:</p>
-            </div>
-            <div class="col-6">
-                <p>Empty Field</p>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary">Ändern</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4 text-end">
-                <p>Registriert seit:</p>
-            </div>
-            <div class="col-6">
-                <p>{{ current_user.registered }}</p>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary">Ändern</button>
-            </div>
-        </div>
+        
     </div>
 </section>
 {% endblock content %}

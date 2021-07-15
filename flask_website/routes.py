@@ -134,6 +134,31 @@ def admin():
 @app.route("/account", methods=('GET', 'POST'))
 @login_required
 def account():
+    if request.method == 'POST':
+        new_name = request.form.get('name')
+        new_email = request.form.get('email')
+        new_password = request.form.get('password')
+        if new_name:
+            user = User.query.filter_by(name=new_name).first()
+            if user:
+                flash("Name bereits vergeben", 'danger')
+            else:
+                current_user.name = new_name
+                db.session.commit()
+                flash("Name erfolgreich geändert", 'success')
+        if new_email:
+            user = User.query.filter_by(email=new_email).first()
+            if user:
+                flash("Email bereits vergeben", 'danger')
+            else:
+                current_user.email = new_email
+                db.session.commit()
+                flash("Email erfolgreich geändert", 'success')
+        if new_password:
+            hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+            current_user.password = hashed_password
+            db.session.commit()
+            flash("Password erfolgreich geändert", 'success')
     return render_template("account.html", title="Account", buttons=buttons)
 
 

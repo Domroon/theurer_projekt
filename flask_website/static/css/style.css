@@ -155,3 +155,14 @@ footer a:hover {
     max-width: 60rem;
     min-height: 60rem;
 }
+
+/* ACCOUNT */
+.account-card{
+    background-color: var(--primary);
+}
+
+.account{
+    min-height: 60rem;
+}
+
+
