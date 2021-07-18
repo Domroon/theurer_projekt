@@ -166,3 +166,20 @@ footer a:hover {
 }
 
 
+/* NEWS */
+
+.news img {
+    width: 200px;
+}
+
+.news .container {
+    max-width: 60rem;
+}
+
+.news .col {
+    background-color: var(--primary);
+}
+
+.news .card-text {
+    font-size: 1rem
+}

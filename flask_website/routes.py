@@ -10,6 +10,10 @@ buttons = [
         'link': 'home'
     },
     {
+        'title': 'Aktuelles',
+        'link': 'news'
+    },
+    {
         'title': 'Klavierunterricht',
         'link': 'piano_lesson'
     },
@@ -161,6 +165,9 @@ def account():
             flash("Password erfolgreich geändert", 'success')
     return render_template("account.html", title="Account", buttons=buttons)
 
+@app.route("/news")
+def news():
+    return render_template("news.html", title="Aktuelles", buttons=buttons)
 
 #@app.route("/admin/questions", methods=('GET', 'POST'))
 #def admin():
