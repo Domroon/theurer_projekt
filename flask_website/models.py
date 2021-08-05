@@ -27,3 +27,13 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.name}','{self.email}', '{self.registered}')"
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), unique=False, nullable=False)
+    text = db.Column(db.String(120), unique=False, nullable=False)
+    last_update = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"Post('{self.id}', '{self.title}', '{self.last_update}')"
