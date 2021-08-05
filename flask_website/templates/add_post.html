@@ -1,0 +1,38 @@
+{% extends "short_base.html" %}
+{% block content %}
+<!-- Add Post -->
+    <section class="login">
+      <div class="container-fluid mt-5 p-5 mb-5">
+        <div class="row justify-content-center text-center">
+            <form method="post" class="col-md-12 col-xl-10 col-xxl-6 mt-0 m-4 p-4" enctype="multipart/form-data">
+                <h1>{{title}}</h1>
+                <div class="form-floating mb-3">
+                    <input name="post_title" type="text" class="form-control input_label" id="news_title" placeholder="Überschrift" required>
+                    <label class="input_label" for="floatingPassword">Überschrift</label>
+                </div>
+                <div class="form-floating mb-5">
+                    <textarea name="post_text" type="text" class="form-control input_label" id="floatingInput" placeholder="Lorem Ipsum" rows="5" required></textarea>
+                    <label class="input_label" for="floatingInput">Nachrichtentext</label>
+                </div>
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <div class="d-grid gap-2 mt-5">
+                    <button class="btn btn-outline-dark" type="submit">Absenden</button>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash d-grid gap-2 mt-5 alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+      </div>
+    </section>
+
+
+
+{% endblock content %}

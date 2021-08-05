@@ -1,5 +1,6 @@
+from operator import pos
 from werkzeug.utils import redirect
-from flask_website.models import User, Question
+from flask_website.models import Post, User, Question
 from flask import request, flash, render_template, url_for
 from flask_website import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
@@ -168,6 +169,16 @@ def account():
 @app.route("/news")
 def news():
     return render_template("news.html", title="Aktuelles", buttons=buttons)
+
+@app.route("/add_post", methods=('GET', 'POST'))
+def add_post():
+    if request.method == 'POST':
+        post_title = request.form.get('post_title')
+        post_text = request.form.get('post_text')
+        post = Post(title=post_title, text=post_text)
+        db.session.add(post)
+        db.session.commit()
+    return render_template("add_post.html", title="Hinzufügen", butttons=buttons)
 
 #@app.route("/admin/questions", methods=('GET', 'POST'))
 #def admin():
